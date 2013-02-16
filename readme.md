@@ -56,8 +56,8 @@ If your site is multi-language, append translations from `site/languages/comment
   
 Create a template (or modify exising template) for pages with comments in `site/templates`. In our example: *site/templates/page-with-comments.php*. Add the following code where appropriate:
 
-    `<?php snippet('comments.list') ?>`  
-    `<?php snippet('comments.add.form') ?>`
+    <?php snippet('comments.list') ?>
+    <?php snippet('comments.add.form') ?>
 
 You can modify HTML code of these snippets as you wish, just keep form field names and content.
     
