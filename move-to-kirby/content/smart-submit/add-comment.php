@@ -9,7 +9,7 @@ if (!get('name'))            	{ die('{"error":"'.(l::get('error.name-required') 
 if (!v::email(get('email'))) 	{ die('{"error":"'.(l::get('error.email-invalid') ?: 'Please enter valid e-mail address.').'"}'); }
 if (!get('text'))            	{ die('{"error":"'.(l::get('error.message-required') ?: 'Message is required.').'"}'); }
 
-$comments_file = c::get('root') . '/' . get('diruri') . '/' . c::get('comments.data.filename');
+$comments_file = c::get('root') . '/' . get('diruri') . '/' . c::get('comments.data.filename', 'comments.json');
 $comments = json_decode(utf8_encode(file_get_contents($comments_file)), true);
 
 $new_comment_id = count($comments);
