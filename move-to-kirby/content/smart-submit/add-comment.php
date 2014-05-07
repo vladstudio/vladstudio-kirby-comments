@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 header('Content-type: application/json');
 
@@ -9,7 +9,7 @@ if (!get('name'))            	{ die('{"error":"'.(l::get('error.name-required') 
 if (!v::email(get('email'))) 	{ die('{"error":"'.(l::get('error.email-invalid') ?: 'Please enter valid e-mail address.').'"}'); }
 if (!get('text'))            	{ die('{"error":"'.(l::get('error.message-required') ?: 'Message is required.').'"}'); }
 
-$comments_file = c::get('root') . '/' . get('diruri') . '/' . c::get('comments.data.filename', 'comments.json');
+$comments_file = c::get('root.content') . '/' . get('diruri') . '/' . c::get('comments.data.filename', 'comments.json');
 $comments = json_decode(utf8_encode(file_get_contents($comments_file)), true);
 
 $new_comment_id = count($comments);
@@ -25,7 +25,7 @@ file_put_contents($comments_file, $comment_json) || die('{"error":"'.(l::get('co
 
 // save name & email into cookie
 if (c::get('comments.save_author_in_cookie')):
-	cookie::set('comments_author_name', get('name'));	
+	cookie::set('comments_author_name', get('name'));
 	cookie::set('comments_author_email', get('email'));
 endif;
 
@@ -33,7 +33,7 @@ endif;
 if (function_exists('amazon_ses') && v::email(c::get('comments.notify.email'))):
 amazon_ses(array(
 	'to'	=> c::get('comments.notify.email'),
-	'body'	=> 
+	'body'	=>
 		"From: ".addslashes(get('name'))." <".addslashes(get('email')).">\n\n".
 		server::get('http_referer')."\n\n".
 		addslashes(get('text'))
