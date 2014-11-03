@@ -34,7 +34,7 @@ endif;
 if (c::get('comments.enabled')):
 
 	// read comments
-	$comments['data.file.path'] = c::get('root.content') . '/' . $page->diruri() . '/' . c::get('comments.data.filename', 'comments.json');
+	$comments['data.file.path'] = kirby()->roots()->content() . '/' . $page->diruri() . '/' . c::get('comments.data.filename', 'comments.json');
 
 	if (file_exists($comments['data.file.path'])):
 		$comments['data'] = json_decode(utf8_encode(file_get_contents($comments['data.file.path'])), true);
