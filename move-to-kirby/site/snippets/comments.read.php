@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 if (c::get('comments.enabled')):
 
 	// prepare current page's path (f.e. blog/post-one)
-	$comments['match_path'] = str_replace('content/', '', $page->diruri);
+	$comments['match_path'] = str_replace('content/', '', $page->diruri());
 
 	// check "include pages"
 	if (c::get('comments.include.pages')):
@@ -34,7 +34,7 @@ endif;
 if (c::get('comments.enabled')):
 
 	// read comments
-	$comments['data.file.path'] = c::get('root') . '/' . $page->diruri . '/' . c::get('comments.data.filename', 'comments.json');
+	$comments['data.file.path'] = kirby()->roots()->content() . '/' . $page->diruri() . '/' . c::get('comments.data.filename', 'comments.json');
 
 	if (file_exists($comments['data.file.path'])):
 		$comments['data'] = json_decode(utf8_encode(file_get_contents($comments['data.file.path'])), true);

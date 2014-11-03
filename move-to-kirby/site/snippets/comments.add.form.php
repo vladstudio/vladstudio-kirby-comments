@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 if (c::get('comments.enabled')):
-	
+
 ?>
 <h3><?= l::get('comments.add') ?: 'Add comment' ?></h3>
 <form id="smart-submit" class="add-comment-form" action="<?= url('smart-submit') ?>?handler=add-comment">
@@ -16,7 +16,7 @@ if (c::get('comments.enabled')):
 <textarea rows="12" name="text" class="required" id="text"></textarea>
 <hr>
 <input type="submit" class="submit" value="<?= l::get('comments.send') ?: 'Send' ?>">
-<input type="hidden" name="diruri" value="<?= $page->diruri ?>">
+<input type="hidden" name="diruri" value="<?= $page->diruri() ?>">
 
 </form>
 <?php endif; ?>
